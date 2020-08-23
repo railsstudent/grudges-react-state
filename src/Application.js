@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useCallback } from 'react';
 
 import id from 'uuid/v4';
 
@@ -10,7 +10,11 @@ import initialState from './initialState';
 const GRUDGE_ADD = 'GRUDGE_ADD';
 const GRUDGE_FORGIVE = 'GRUDGE_FORGIVE';
 
-const reducers = (state, action) => {
+// React.memo
+// React.useCallback
+// React.useMemo
+
+const reducer = (state, action) => {
   if (action.type === GRUDGE_ADD) {
     return [
       action.payload,
@@ -25,9 +29,9 @@ const reducers = (state, action) => {
 }
 
 const Application = () => {
-  const [state, dispatch] = useReducer(reducers, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  const addGrudge = grudge => {
+  const addGrudge = useCallback(grudge => {
     dispatch(
     { 
       type: GRUDGE_ADD,
@@ -37,16 +41,16 @@ const Application = () => {
         forgiven: false
       }
     });
-  };
+  }, [dispatch]);
 
-  const toggleForgiveness = id => {
+  const toggleForgiveness = useCallback(id => {
     dispatch({
       type: GRUDGE_FORGIVE,
       payload: {
         id
       }
     });
-  };
+  }, [dispatch]);
 
   return (
     <div className="Application">
