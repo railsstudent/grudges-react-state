@@ -2,6 +2,7 @@ import React from 'react';
 import Grudge from './Grudge';
 
 const Grudges = ({ grudges = [], onForgive }) => {
+  console.log('Render grudges');
   return (
     <section className="Grudges">
       <h2>Grudges ({grudges.length})</h2>
