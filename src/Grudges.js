@@ -1,10 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Grudge from './Grudge';
 
 import { GrudgeContext } from './GrudgeContext';
 
 const Grudges = () => {
   const { grudges } = useContext(GrudgeContext);
+  const forgivenCount = grudges.filter(g => g.forgiven).length;
+
+  useEffect(() => {
+    document.title = `${forgivenCount}`;
+  }, [forgivenCount]);
 
   console.log('Render grudges');
   return (
