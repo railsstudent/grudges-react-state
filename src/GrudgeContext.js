@@ -6,6 +6,7 @@ export const GrudgeContext = createContext();
 
 const GRUDGE_ADD = 'GRUDGE_ADD';
 const GRUDGE_FORGIVE = 'GRUDGE_FORGIVE';
+const UNDO = 'UNDO';
 
 const reducer = (state = defaultState, action) => {
   if (action.type === GRUDGE_ADD) {
@@ -39,7 +40,7 @@ const reducer = (state = defaultState, action) => {
     };
   }
 
-  if (action.type === 'UNDO') {
+  if (action.type === UNDO) {
     const [newPresent, ...newPast] = state.past;
     return {
       past: newPast,
@@ -89,7 +90,7 @@ export const GrudgeProvider = ({ children }) => {
   );
 
   const undo = useCallback(() => {
-    dispatch({ type: 'UNDO' });
+    dispatch({ type: UNDO });
   }, [dispatch]);
 
   return (
