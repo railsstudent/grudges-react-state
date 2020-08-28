@@ -7,7 +7,7 @@ const NewGrudge = React.memo(() => {
   const [person, setPerson] = useState('');
   const [reason, setReason] = useState('');
 
-  console.log('hi');
+  // console.log('hi');
 
   const handleChange = event => {
     event.preventDefault();

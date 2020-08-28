@@ -5,7 +5,7 @@ const Grudge = React.memo(({ grudge }) => {
   const { toggleForgiveness } = React.useContext(GrudgeContext);
   const forgive = () => toggleForgiveness(grudge.id);
 
-  console.log('Rendering Grudge');
+  // console.log('Rendering Grudge');
 
   return (
     <article className="Grudge">
